@@ -1,3 +1,40 @@
 <h1>
-  {{title}}
+  Roast timer
 </h1>
+
+<h2>Pick a meat</h2>
+
+<div *ngFor="let meat of meats">
+  <input 
+    type="radio" 
+    [(ngModel)]="selectedMeat" 
+    id="meat-{{ meat }}" 
+    name="meat" 
+    [value]="meat"
+  >
+  <label for="meat-{{ meat }}">{{ meat | capitalize }}</label>
+</div>
+
+<ng-container *ngIf="selectedMeat">
+  <h2>How well done do you like your {{ selectedMeat }}?</h2>
+    <div *ngFor="let doneness of donenessOptions">
+    <input 
+      type="radio" 
+      [(ngModel)]="selectedDoneness" 
+      id="doneness-{{ doneness }}" 
+      name="doneness" 
+      [value]="doneness"
+    >
+    <label for="doneness-{{ doneness }}">{{ doneness | capitalize }}</label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="selectedMeat">
+  <h2>How much does your {{ selectedMeat }} weigh?</h2>
+  <input type="number" [(ngModel)]="weight" placeholder="Weight in grammes">
+</ng-container>
+
+<ng-container *ngIf="selectedMeat && selectedDoneness && weight"> 
+  <h2>Cooking instructions</h2>
+  <p>{{ roastTime }}</p>
+</ng-container>

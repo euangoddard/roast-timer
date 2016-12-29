@@ -1,3 +1,5 @@
+import { MeatService } from './meat.service';
+import { CapitalCasePipe } from './capitalize.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,14 +9,17 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CapitalCasePipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    MeatService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
